@@ -1,4 +1,4 @@
-package me.dusheiko.controller;
+package me.dusheiko.tweet;
 
 import java.util.List;
 
