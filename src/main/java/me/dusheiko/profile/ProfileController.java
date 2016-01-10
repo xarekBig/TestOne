@@ -5,6 +5,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,7 +16,18 @@ import me.dusheiko.date.USLocalDateFormater;
 
 @Controller
 public class ProfileController {
-
+	private UserProfileSession userProfileSession;
+	
+	@Autowired
+	public ProfileController(UserProfileSession userProfileSession) {
+		this.userProfileSession = userProfileSession;
+	}
+	
+	@ModelAttribute
+	public ProfileForm getProfileForm() {
+		return userProfileSession.toForm();
+	}
+	
 	@RequestMapping("/profile")
 	public String displayProfile(ProfileForm profileForm) {
 		return "profile/profilePage";
@@ -26,6 +38,7 @@ public class ProfileController {
 		if(bindingResult.hasErrors()) {
 			return "profile/profilePage";
 		}
+		userProfileSession.saveForm(profileForm);
 		System.out.println("save ok" + profileForm);
 		return "redirect:/profile";
 	}
