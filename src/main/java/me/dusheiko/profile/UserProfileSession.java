@@ -1,12 +1,16 @@
 package me.dusheiko.profile;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,6 +20,7 @@ public class UserProfileSession implements Serializable{
 	private String email;
 	private LocalDate birthDate;
 	private List<String> tastes = new ArrayList<String>();
+	private URL picturePath;
 	
 	public void saveForm(ProfileForm profileForm) {
 		this.twitterHandle = profileForm.getTwitterHandle();
@@ -32,4 +37,18 @@ public class UserProfileSession implements Serializable{
 		profileForm.setTastes(tastes);
 		return profileForm;
 	}
+	
+	public Resource getPicturePath() {
+		return picturePath == null ? null : new UrlResource(picturePath);
+	}
+
+	public void setPicturePath(Resource picturePath) throws IOException {
+		this.picturePath = picturePath.getURL();
+	}
+
+	public List<String> getTastes() {
+		return tastes;
+	}
+	
+	
 }
