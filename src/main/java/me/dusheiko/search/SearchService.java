@@ -19,13 +19,14 @@ public class SearchService {
 		this.twitter = twitter;
 	}
 	
-	public List<Tweet> search(String searchType, List<String> keywords) {
+	public List<LightTweet> search(String searchType, List<String> keywords) {
 		List<SearchParameters> searches = keywords.stream()
 				.map(taste -> createSearchParam(searchType, taste))
 				.collect(Collectors.toList());
-		List<Tweet> tweets = searches.stream()
+		List<LightTweet> tweets = searches.stream()
 				.map(params -> twitter.searchOperations().search(params))
 				.flatMap(searchResults -> searchResults.getTweets().stream())
+				.map(LightTweet::ofTweet)
 				.collect(Collectors.toList());
 		return tweets;
 	}
