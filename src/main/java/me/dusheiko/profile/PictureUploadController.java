@@ -84,11 +84,5 @@ public class PictureUploadController {
 	
 	private boolean isImage(MultipartFile file) {
 		return file.getContentType().startsWith("image");
-	}
-
-	public void setUserProfileSession(UserProfileSession userProfileSession) {
-		this.userProfileSession = userProfileSession;
-	}
-	
-	
+	}	
 }

@@ -19,8 +19,4 @@ public class HomeController {
 		}
 		return "redirect:/search/mixed;keywords=" + String.join(",", tastes);
 	}
-	
-	public void setUserProfileSession(UserProfileSession userProfileSession) {
-		this.userProfileSession = userProfileSession;
-	}	
 }

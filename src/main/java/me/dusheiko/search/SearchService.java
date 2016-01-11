@@ -5,13 +5,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.twitter.api.SearchParameters;
-import org.springframework.social.twitter.api.SearchResults;
-import org.springframework.social.twitter.api.Tweet;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SearchService {
+public class SearchService implements TwitterSearch {
 	private Twitter twitter;
 	
 	@Autowired
@@ -19,6 +17,7 @@ public class SearchService {
 		this.twitter = twitter;
 	}
 	
+	@Override
 	public List<LightTweet> search(String searchType, List<String> keywords) {
 		List<SearchParameters> searches = keywords.stream()
 				.map(taste -> createSearchParam(searchType, taste))

@@ -37,10 +37,4 @@ public class UserApiController {
 	public void deleteUser(@PathVariable String email) {
 		userRepository.delete(email);
 	}
-	
-	public void setUserRepository(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
-	
-	
 }

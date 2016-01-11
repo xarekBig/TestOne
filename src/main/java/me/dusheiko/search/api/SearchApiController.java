@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import me.dusheiko.search.LightTweet;
-import me.dusheiko.search.SearchService;
+import me.dusheiko.search.TwitterSearch;
 
 @RestController
 @RequestMapping("/api/search")
 public class SearchApiController {
 	@Autowired
-	private SearchService searchService;
+	private TwitterSearch searchService;
 
 	@RequestMapping(value = "/{searchType}", method = RequestMethod.GET)
 	public List<LightTweet> search(@PathVariable String searchType, @MatrixVariable List<String> keywords) {
 		return searchService.search(searchType, keywords);
 	}
 	
-	public void setSearchService(SearchService searchService) {
+	public void setSearchService(TwitterSearch searchService) {
 		this.searchService = searchService;
 	}
 }

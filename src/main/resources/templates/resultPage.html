@@ -12,7 +12,7 @@
 				<li class="collection-item avatar" th:each="tweet : ${tweets}">
 					<img th:src="${tweet.profileImageUrl}" alt="" class="circle"/>
 					<span class="title" th:text="${tweet.user}">UserName</span>
-					<p th:text="|${tweet.createdAt} ${tweet.text}|">Tweet message</p>
+					<p th:text="|${tweet.date} ${tweet.text}|">Tweet message</p>
 				</li>
 			</ul>
 		</div>

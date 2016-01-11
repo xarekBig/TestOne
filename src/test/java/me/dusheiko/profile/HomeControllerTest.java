@@ -22,6 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 
 import me.dusheiko.MasteringSpringMvcApplication;
+import me.dusheiko.profile.UserProfileSession;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(MasteringSpringMvcApplication.class)
